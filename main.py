@@ -11,6 +11,11 @@ from configs.config import CONFIG
 from helpers.connection_checker import overload_checker
 
 
+@repeat_every(seconds=5)
+def do_check_overload():
+    overload_checker.check_overload()
+
+
 @asynccontextmanager
 async def lifespan(app):
     print('Welcome to shop-dev app')
@@ -34,11 +39,6 @@ async def root():
     return JSONResponse(
         content=data,
     )
-
-
-@repeat_every(seconds=5)
-def do_check_overload():
-    overload_checker.check_overload()
 
 
 def main():

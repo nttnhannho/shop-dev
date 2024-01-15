@@ -34,8 +34,13 @@ cfg = {
     'dev': dev,
     'prod': prod,
 }
+
+index_env = 1
+
 try:
-    env = sys.argv[1]
+    env = sys.argv[index_env]
+    if env not in (None, 'dev', 'prod'):
+        env = 'dev'
 except IndexError:
     env = 'dev'
 
